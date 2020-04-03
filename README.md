@@ -1,4 +1,4 @@
-Discussion Forum
+Image Browsing App
 
 ### To setup local environment
 1. 
