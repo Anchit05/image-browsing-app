@@ -4,15 +4,18 @@ import ImagesGallery from './gallery/ImagesGallery';
 import Header from './headers/Header';
 import * as images from './imageGetter/images';
 import SearchContainer from './components/SearchContainer';
+import OptionsContainer from './components/OptionsContainer';
 
 class App extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      imagesData: []
+      imagesData: [],
+      optionVal: ""
     }
     this.fetchInitalData = this.fetchInitalData.bind(this);
     this.setImagesData   = this.setImagesData.bind(this);
+    this.setOption       = this.setOption.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +37,12 @@ class App extends Component {
     });
   }
 
+  setOption(optionVal){
+    this.setState({
+      optionVal: optionVal
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -44,10 +53,15 @@ class App extends Component {
               setImagesData = {this.setImagesData}
             />
           </div>
+          <div className="main-option-container">
+            <OptionsContainer 
+              setOptionVal = {this.setOption}
+            />
+          </div>
           <ImagesGallery
             imagesData = {this.state.imagesData}
+            optionVal  = {this.state.optionVal}
           />
-          <button className="button" onClick={images.tryFetchingImages}>Get Results</button>
         </div>
       </div>
     );

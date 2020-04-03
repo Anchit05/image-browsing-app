@@ -14,11 +14,11 @@ class ImagesGallery extends Component {
 
 	render() {
 		let imagesArr = this.props.imagesData;
-		console.log("imagesArr: ", imagesArr);
+		// console.log("imagesArr: ", imagesArr);
 		return (
 			<div className="main-images-list-container">
 				{ imagesArr && imagesArr.length > 0 && imagesArr.map( (imagesObj, index) =>(
-						<div className="common-image-container" key={index}>
+						<div className={"common-image-container " + this.props.optionVal} key={index}>
 							<img className={"common-image image-" + index} src={imagesObj.urls.small}/>
 						</div>
 					))

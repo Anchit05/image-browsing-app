@@ -5,6 +5,7 @@
 	left: 0;
 	background-color: purple;
 	text-align: center;
+	z-index: 1;
 }
 .main-header{
 	color: #fff;
