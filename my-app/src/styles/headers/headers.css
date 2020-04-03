@@ -1,0 +1,12 @@
+.main-header-container{
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	background-color: purple;
+}
+.main-header{
+	color: #fff;
+	font-size: 20px;
+	font-family: "Times New Roman", Times, serif;
+}
