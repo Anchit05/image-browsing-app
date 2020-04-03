@@ -28,7 +28,7 @@ class SearchContainer extends Component {
 		if ( searchText ){
 			images.tryFetchingSearchImages(searchText).then((imagesData) => {
 	      if ( imagesData && imagesData.results && imagesData.results.length ){
-	        oThis.props.setImagesData(imagesData.results)
+	        oThis.props.setImagesData(imagesData.results, searchText);
 	      }
 	    });
 		}
