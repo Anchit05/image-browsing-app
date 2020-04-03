@@ -1,0 +1,26 @@
+.search-container{
+	padding: 10px 20px;
+}
+.search-input-box {
+  width: calc( 100% - 120px );
+  height: 30px;
+  background: rgba(188, 188, 188, 0.2);
+  border-radius: 3px;
+  border: 1px transparent;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: 8px 10px;
+  outline: none;
+}
+.search-button {
+  background: purple;
+  border-radius: 3px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  width: 100px;
+  text-align: center;
+  padding: 14px 0px;
+}
+.search-text{
+	color: #fff;
+}

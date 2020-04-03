@@ -4,7 +4,7 @@ import '../styles/headers/headers.css';
 const Header = () => {
 	return (
 		<div className="main-header-container">
-			<h1 className="main-header">Image Gallery</h1>
+			<h1 className="main-header fnt-roman">Image Gallery</h1>
 		</div>
 	)
 }

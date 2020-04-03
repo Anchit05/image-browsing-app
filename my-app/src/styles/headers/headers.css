@@ -4,9 +4,9 @@
 	right: 0;
 	left: 0;
 	background-color: purple;
+	text-align: center;
 }
 .main-header{
 	color: #fff;
 	font-size: 20px;
-	font-family: "Times New Roman", Times, serif;
 }
