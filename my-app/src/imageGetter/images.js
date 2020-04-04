@@ -1,7 +1,6 @@
 export function tryFetchingImages(count, start){
 	const cliendId = "m-vL0Ob6-ZtpE-bYVBSj251ZvviX0SjDoWQLYg-QPwU";
 	const endpoint = "https://api.unsplash.com/photos";
-	console.log("fetching images");
 
 	let queryString     = "?";
 	queryString = queryString + "client_id=" + cliendId;
@@ -20,7 +19,6 @@ export function tryFetchingImages(count, start){
 export function tryFetchingSearchImages(searchText){
 	const cliendId = "m-vL0Ob6-ZtpE-bYVBSj251ZvviX0SjDoWQLYg-QPwU";
 	const endpoint = "https://api.unsplash.com/search/photos";
-	console.log("fetching search images");
 
 	let queryString     = "?";
 	queryString = queryString + "client_id=" + cliendId;
@@ -45,7 +43,6 @@ export function tryFetchingMoreImages(searchText, count, start){
 	}else{
 		endpoint = "https://api.unsplash.com/photos";
 	}
-	console.log("fetching more images");
 
 	let queryString     = "?";
 	queryString = queryString + "client_id=" + cliendId;

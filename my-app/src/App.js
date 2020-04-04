@@ -15,12 +15,14 @@ class App extends Component {
       optionVal: "",
       searchText: "",
       start: 1,
-      count: 30
+      count: 30,
+      searchedImages: false
     }
     this.fetchInitalData = this.fetchInitalData.bind(this);
     this.setImagesData   = this.setImagesData.bind(this);
     this.setOption       = this.setOption.bind(this);
     this.fetchImages     = this.fetchImages.bind(this);
+    this.saveRecentData  = this.saveRecentData.bind(this);
   }
 
   componentDidMount() {
@@ -28,15 +30,56 @@ class App extends Component {
     this.fetchInitalData(count, start);
   }
 
+  // to check if the searched Data is already there
+  checkForData(searchText){
+    let recentData = JSON.parse(localStorage.getItem("recentImageSearchData") || "[]"),
+        count      = 0;
+
+    for(let i=0; i< recentData.length; i++){
+      if ( recentData[i] && Object.keys(recentData[i]).indexOf(searchText) != -1 ){
+        count = count + 1;
+      }
+    }
+    if ( count ){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  // saves the recent search data
+  saveRecentData(imagesData, searchText){
+    let recentData = JSON.parse(localStorage.getItem("recentImageSearchData") || "[]"),
+        objData    = {},
+        tempArr    = [];
+
+    if ( searchText && this.checkForData(searchText) ){
+      imagesData.map(function(obj, index){
+        let tempObj = {};
+        if ( obj.urls && obj.urls.small ){
+          tempObj.urls = JSON.parse(JSON.stringify(obj.urls));
+          tempArr.push(tempObj);
+        }
+      });
+      objData[searchText] = JSON.parse(JSON.stringify(tempArr));
+      recentData.push(objData);
+      localStorage.setItem("recentImageSearchData", JSON.stringify( recentData ));
+    }
+  }
+
+  //fetches data, initally when page loads
   fetchInitalData(count, start){
     let oThis = this;
+    console.log("fetch inital: ", count, start);
     images.tryFetchingImages(count, start).then((imagesData) => {
       oThis.setState({
-        imagesData: imagesData
+        imagesData: imagesData,
+        searchedImages: false
       });
     });
   }
 
+  // fetch images during infinte scroll
   fetchImages(){
     let oThis = this;
 
@@ -56,11 +99,14 @@ class App extends Component {
     });
   }
 
+  // function to set searched data
   setImagesData(searchData, searchText){
     this.setState({
       imagesData: searchData,
-      searchText: searchText
+      searchText: searchText,
+      searchedImages: true
     });
+    this.saveRecentData(searchData, searchText);
   }
 
   setOption(optionVal){
@@ -77,6 +123,8 @@ class App extends Component {
           <div className="main-search-container">
             <SearchContainer 
               setImagesData = {this.setImagesData}
+              searchedImages = {this.state.searchedImages}
+              fetchInitalData = {this.fetchInitalData}
             />
           </div>
           <div className="main-option-container">
@@ -100,18 +148,5 @@ class App extends Component {
     );
   }
 }
-
-// function App() {
-//   let oThis = this;
-//   useEffect(() => {
-//     this.fetchInitalData();
-//   }, []);
-
-//   fetchInitalData(){
-//     console.log("inital Data");
-//   }
-
-  
-// }
 
 export default App;
